@@ -1,0 +1,17 @@
+.form {
+  width: 50%;
+  display: inline-block;
+
+  .form-group {
+    min-height: 3rem;
+    margin-bottom: 0.5rem;
+
+    &.error {
+      color: red;
+
+      input, select {
+        border-color: red;
+      }
+    }
+  }
+}

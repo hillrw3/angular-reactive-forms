@@ -1,0 +1,49 @@
+<div class="form">
+  <h1>Reactive Form</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label>Name:
+        <input type="text" formControlName="name">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>Weight:
+        <input type="number" formControlName="weight">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>Sex:
+        <div>
+          <input type="radio" id="sex__female" formControlName="sex" value="female">
+          <label for="sex__female">Female</label>
+        </div>
+
+        <div>
+          <input type="radio" id="sex__male" formControlName="sex" value="male">
+          <label for="sex__male">Male</label>
+        </div>
+        <div>
+          <input type="radio" id="sex__no-preference" formControlName="sex" value="noPreference">
+          <label for="sex__no-preference">Don't Care</label>
+        </div>
+      </label>
+    </div>
+
+    <div class="form-group">
+        <input id="has-hair" type="checkbox" formControlName="hasHair">
+      <label for="has-hair">Has Hair?</label>
+    </div>
+
+    <div class="form-group">
+      <label for="coat-color">Color: </label>
+      <select formControlName="coatColor" id="coat-color">
+        <option value="" selected></option>
+        <option *ngFor="let color of coatColors" [value]="color">{{color}}</option>
+      </select>
+    </div>
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>
