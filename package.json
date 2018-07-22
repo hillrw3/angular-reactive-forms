@@ -1,5 +1,5 @@
 {
-  "name": "angular-forms-spike",
+  "name": "angular-reactive-forms",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

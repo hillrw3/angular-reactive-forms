@@ -16,6 +16,7 @@ export class ReactiveFormComponent implements OnInit {
 
   ngOnInit() {
     this.createForm()
+    this.connectCoatColorToHasHair()
   }
 
   submitForm() {
@@ -30,12 +31,16 @@ export class ReactiveFormComponent implements OnInit {
       hasHair: true,
       coatColor: [null, Validators.required]
     })
+  }
 
+  private connectCoatColorToHasHair() {
     this.form.get('hasHair').valueChanges.subscribe(hasHair => {
       const coatColor = this.form.get('coatColor')
       if (hasHair) {
+        coatColor.enable()
         coatColor.setValidators(Validators.required)
       } else {
+        coatColor.disable()
         coatColor.clearValidators()
       }
       coatColor.updateValueAndValidity()

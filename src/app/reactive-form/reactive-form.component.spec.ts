@@ -26,14 +26,16 @@ describe('ReactiveFormComponent', () => {
       expect(component.form.get('name').errors.required).toEqual(true);
     });
 
-    it('requires coat color if dog has hair', fakeAsync(() => {
+    it('requires and enables coat color if dog has hair', fakeAsync(() => {
       component.form.get('hasHair').setValue(false);
       tick(1);
       expect(component.form.get('coatColor').errors).toBeNull();
+      expect(component.form.get('coatColor').enabled).toEqual(false);
 
       component.form.get('hasHair').setValue(true);
       tick(1);
       expect(component.form.get('coatColor').errors.required).toEqual(true);
+      expect(component.form.get('coatColor').enabled).toEqual(true);
     }));
   });
 });
