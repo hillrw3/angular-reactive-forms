@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {FormBuilder, FormGroup, Validators} from '@angular/forms'
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CoatColor} from '../dog'
 
 @Component({
@@ -23,20 +23,27 @@ export class ReactiveFormComponent implements OnInit {
     console.log(this.form.value)
   }
 
+  get nicknames(): FormArray {
+    return this.form.get('nicknames') as FormArray
+  }
+
   private createForm() {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
-      sex: 'noPreference',
+      sex: 'female',
       weight: 0,
       hasHair: true,
-      coatColor: [null, Validators.required]
+      coatColor: [null, Validators.required],
+      nicknames: this.formBuilder.array([
+        this.formBuilder.control('')
+      ])
     })
   }
 
   private connectCoatColorToHasHair() {
-    this.form.get('hasHair').valueChanges.subscribe(hasHair => {
+    this.form.get('hasHair').valueChanges.subscribe((hasHairValue: boolean) => {
       const coatColor = this.form.get('coatColor')
-      if (hasHair) {
+      if (hasHairValue) {
         coatColor.enable()
         coatColor.setValidators(Validators.required)
       } else {
@@ -45,5 +52,9 @@ export class ReactiveFormComponent implements OnInit {
       }
       coatColor.updateValueAndValidity()
     })
+  }
+
+  addNickname() {
+    this.nicknames.push(this.formBuilder.control(''))
   }
 }
