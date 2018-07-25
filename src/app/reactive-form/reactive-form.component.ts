@@ -36,7 +36,11 @@ export class ReactiveFormComponent implements OnInit {
       coatColor: [null, Validators.required],
       nicknames: this.formBuilder.array([
         this.formBuilder.control('')
-      ])
+      ]),
+      owner: this.formBuilder.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+      })
     })
   }
 
