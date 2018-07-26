@@ -1,5 +1,4 @@
 <div class="form">
-  <h1>Reactive Form</h1>
 
   <form [formGroup]="form" (ngSubmit)="submitForm()">
     <div class="form-group" [class.error]="hasError(form.get('name'))">
@@ -57,7 +56,7 @@
     </div>
 
     <div formGroupName="owner">
-      <div>Owner Info</div>
+      <h4>Owner Info</h4>
       <div class="form-group" [class.error]="hasError(form.get('owner').get('firstName'))">
         <label>
           <div>First Name <span [hidden]="!hasError(form.get('owner').get('firstName'))">is required</span></div>
