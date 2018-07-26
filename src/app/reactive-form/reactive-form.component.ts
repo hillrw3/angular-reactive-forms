@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core'
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CoatColor} from '../dog'
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CoatColor} from '../dog';
 
 @Component({
   selector: 'reactive-form',
@@ -60,5 +60,9 @@ export class ReactiveFormComponent implements OnInit {
 
   addNickname() {
     this.nicknames.push(this.formBuilder.control(''))
+  }
+
+  hasError(control: AbstractControl) {
+    return control.touched && control.invalid
   }
 }
