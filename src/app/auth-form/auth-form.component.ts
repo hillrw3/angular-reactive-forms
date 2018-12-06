@@ -13,7 +13,7 @@ export class AuthFormComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      username: new FormControl('', [Validators.required, Validators.minLength(4)]),
       password: new FormControl('', [Validators.required])
     })
   }

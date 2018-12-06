@@ -1,0 +1,6 @@
+<form [formGroup]="form">
+  <label> Username:
+    <input type="text" formControlName="username">
+    <span class="error" *ngIf="username.invalid && username.dirty">Username already taken. Try again!</span>
+  </label>
+</form>
