@@ -1,25 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
 
-import { AsyncValidatorExampleComponent } from './async-validator-example.component';
+import {AsyncValidatorExampleComponent} from './async-validator-example.component'
+import {ReactiveFormsModule} from "@angular/forms"
 
 describe('AsyncValidatorExampleComponent', () => {
-  let component: AsyncValidatorExampleComponent;
-  let fixture: ComponentFixture<AsyncValidatorExampleComponent>;
+  let component: AsyncValidatorExampleComponent
+  let fixture: ComponentFixture<AsyncValidatorExampleComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AsyncValidatorExampleComponent ]
+      declarations: [AsyncValidatorExampleComponent],
+      imports: [ReactiveFormsModule]
     })
-    .compileComponents();
-  }));
+      .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AsyncValidatorExampleComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(AsyncValidatorExampleComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+    component.ngOnInit()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

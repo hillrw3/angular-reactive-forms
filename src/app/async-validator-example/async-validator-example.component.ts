@@ -1,12 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors} from "@angular/forms"
-import {of} from "rxjs"
-
-function validateUniqueUsername(control: FormControl) {
-  const takenUsernames = ['tim', 'billy', 'charlene', 'gertrude', 'frank']
-  let failed = takenUsernames.includes(control.value)
-  return of(failed ? {username: 'already taken'} : null)
-}
+import {Component, OnInit} from '@angular/core'
+import {FormBuilder, FormGroup} from "@angular/forms"
+import {validateUsernameUniqueness} from "./validations"
+import {UserService} from "../user.service"
 
 @Component({
   selector: 'async-validator-example',
@@ -16,16 +11,11 @@ function validateUniqueUsername(control: FormControl) {
 export class AsyncValidatorExampleComponent implements OnInit {
   form: FormGroup
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService) {
+  }
 
   ngOnInit() {
     this.buildForm()
-
-    this.username.valueChanges.subscribe(value => {
-      console.log(value)
-      console.log(this.username.invalid)
-      console.log(this.username.touched)
-    })
   }
 
   get username() {
@@ -34,7 +24,7 @@ export class AsyncValidatorExampleComponent implements OnInit {
 
   private buildForm() {
     this.form = this.fb.group({
-      username: ['', null, validateUniqueUsername]
+      username: ['', null, validateUsernameUniqueness(this.userService)]
     })
   }
 }
