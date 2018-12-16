@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CoatColor} from '../dog';
+import {Component, OnInit} from '@angular/core'
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms'
+import {CoatColor} from '../dog'
+import {hasError} from "../form-helpers"
 
 @Component({
   selector: 'reactive-form',
@@ -10,6 +11,7 @@ import {CoatColor} from '../dog';
 export class ReactiveFormComponent implements OnInit {
   form: FormGroup
   coatColors: CoatColor[] = Object.values(CoatColor)
+  hasError = hasError
 
   constructor(private formBuilder: FormBuilder) {
   }
@@ -60,9 +62,5 @@ export class ReactiveFormComponent implements OnInit {
 
   addNickname() {
     this.nicknames.push(this.formBuilder.control(''))
-  }
-
-  hasError(control: AbstractControl) {
-    return control.touched && control.invalid
   }
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core'
 import {FormBuilder, FormGroup} from "@angular/forms"
 import {validateUsernameUniqueness} from "./validations"
 import {UserService} from "../user.service"
+import {hasError} from "../form-helpers"
 
 @Component({
   selector: 'async-validator-example',
@@ -10,6 +11,7 @@ import {UserService} from "../user.service"
 })
 export class AsyncValidatorExampleComponent implements OnInit {
   form: FormGroup
+  hasError = hasError
 
   constructor(private fb: FormBuilder, private userService: UserService) {
   }

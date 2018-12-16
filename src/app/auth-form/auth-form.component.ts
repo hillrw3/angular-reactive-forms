@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {hasError} from "../form-helpers"
 
 @Component({
   selector: 'auth-form',
@@ -8,6 +9,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class AuthFormComponent implements OnInit {
   form: FormGroup
+  hasError = hasError
 
   constructor() { }
 
