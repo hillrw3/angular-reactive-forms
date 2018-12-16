@@ -1,0 +1,10 @@
+<div class="form-group">
+  <label>
+    <div>Search Github:</div>
+    <input type="text" [formControl]="searchBar">
+  </label>
+</div>
+
+<div class="results">
+  <div *ngFor="let result of searchResults"><a [href]="result">{{result}}</a></div>
+</div>
