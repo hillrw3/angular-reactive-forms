@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core'
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms'
 import {CoatColor} from '../dog'
-import {hasError} from "../form-helpers"
+import {displayAllErrors, hasError} from "../form-helpers"
 
 @Component({
   selector: 'reactive-form',
-  templateUrl: './reactive-form.component.html',
+  templateUrl: './dog-builder.component.html',
 })
-export class ReactiveFormComponent implements OnInit {
+export class DogBuilderComponent implements OnInit {
   form: FormGroup
   coatColors: CoatColor[] = Object.values(CoatColor)
   hasError = hasError
@@ -21,6 +21,11 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   submitForm() {
+    if (this.form.invalid) {
+      displayAllErrors(this.form)
+      return
+    }
+
     console.log(this.form.value)
   }
 

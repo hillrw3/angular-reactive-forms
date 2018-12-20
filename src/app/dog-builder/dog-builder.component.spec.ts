@@ -1,22 +1,22 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing'
 
-import {ReactiveFormComponent} from './reactive-form.component'
+import {DogBuilderComponent} from './dog-builder.component'
 import {ReactiveFormsModule} from '@angular/forms'
 
-describe('ReactiveFormComponent', () => {
-  let component: ReactiveFormComponent
-  let fixture: ComponentFixture<ReactiveFormComponent>
+describe('DogBuilderComponent', () => {
+  let component: DogBuilderComponent
+  let fixture: ComponentFixture<DogBuilderComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ReactiveFormComponent],
+      declarations: [DogBuilderComponent],
       imports: [ReactiveFormsModule]
     })
       .compileComponents()
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReactiveFormComponent)
+    fixture = TestBed.createComponent(DogBuilderComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
