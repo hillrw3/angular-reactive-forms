@@ -1,19 +1,15 @@
 import {Component, OnInit} from '@angular/core'
 import {FormBuilder, FormGroup} from "@angular/forms"
-import {validateUsernameUniqueness} from "./validations"
-import {UserService} from "../user.service"
-import {hasError} from "../form-helpers"
+import {UsernameValidator} from "./validations"
 
 @Component({
   selector: 'async-validator-example',
   templateUrl: './async-validator-example.component.html',
-  styleUrls: ['./async-validator-example.component.scss']
 })
 export class AsyncValidatorExampleComponent implements OnInit {
   form: FormGroup
-  hasError = hasError
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder, private validator: UsernameValidator) {
   }
 
   ngOnInit() {
@@ -26,7 +22,11 @@ export class AsyncValidatorExampleComponent implements OnInit {
 
   private buildForm() {
     this.form = this.fb.group({
-      username: ['', null, validateUsernameUniqueness(this.userService)]
+      username: ['', null, this.validator.validate.bind(this.validator)]
     })
+  }
+
+  private hasError(control) {
+    return control.dirty && control.invalid
   }
 }

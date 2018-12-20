@@ -6,7 +6,6 @@ import {hasError} from "../form-helpers"
 @Component({
   selector: 'reactive-form',
   templateUrl: './reactive-form.component.html',
-  styleUrls: ['./reactive-form.component.scss']
 })
 export class ReactiveFormComponent implements OnInit {
   form: FormGroup
@@ -17,7 +16,7 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.createForm()
+    this.buildForm()
     this.connectCoatColorToHasHair()
   }
 
@@ -29,7 +28,7 @@ export class ReactiveFormComponent implements OnInit {
     return this.form.get('nicknames') as FormArray
   }
 
-  private createForm() {
+  private buildForm() {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       sex: 'female',
@@ -53,6 +52,7 @@ export class ReactiveFormComponent implements OnInit {
         coatColor.enable()
         coatColor.setValidators(Validators.required)
       } else {
+        coatColor.setValue('')
         coatColor.disable()
         coatColor.clearValidators()
       }

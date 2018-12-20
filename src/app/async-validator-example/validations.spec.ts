@@ -1,20 +1,22 @@
 import {of} from "rxjs"
-import {validateUsernameUniqueness} from "./validations"
+import {UsernameValidator} from "./validations"
 import {FormControl} from "@angular/forms"
 
-describe("validateUsernameUniqueness", () => {
+describe("UsernameValidator", () => {
   it("returns null if the username is available", async () => {
     const userService = {validateUsername: () => of(true)}
+    const validator = new UsernameValidator(userService)
 
-    validateUsernameUniqueness(userService)(new FormControl("")).subscribe(error => {
+    validator.validate(new FormControl("")).subscribe(error => {
       expect(error).toBeNull()
     })
   })
 
   it("returns an error if the username is already taken", () => {
     const userService = {validateUsername: () => of(false)}
+    const validator = new UsernameValidator(userService)
 
-    validateUsernameUniqueness(userService)(new FormControl("")).subscribe(error => {
+    validator.validate(new FormControl("")).subscribe(error => {
       expect(error).toEqual({username: 'already taken'})
     })
   })
