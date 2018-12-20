@@ -2,7 +2,7 @@
   <div class="form-group" [class.error]="hasError(form.get('username'))">
     <label>
       <div>Username
-        <span [hidden]="!hasError(form.get('username'))">is already taken. Try again!</span>
+        <span *ngIf="hasError(form.get('username'))">is already taken. Try again!</span>
       </div>
       <input type="text" formControlName="username">
     </label>

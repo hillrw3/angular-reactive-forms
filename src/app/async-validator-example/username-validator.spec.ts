@@ -1,5 +1,5 @@
 import {of} from "rxjs"
-import {UsernameValidator} from "./validations"
+import {UsernameValidator} from "./username-validator"
 import {FormControl} from "@angular/forms"
 
 describe("UsernameValidator", () => {

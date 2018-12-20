@@ -10,6 +10,7 @@ import {Injectable} from "@angular/core"
 export class UsernameValidator implements AsyncValidator {
 
   constructor(private userService: UserService) {
+    this.validate = this.validate.bind(this)
   }
 
   validate(control: AbstractControl): Observable<ValidationErrors | null> {

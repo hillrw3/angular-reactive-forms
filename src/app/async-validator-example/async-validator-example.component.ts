@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core'
 import {FormBuilder, FormGroup} from "@angular/forms"
-import {UsernameValidator} from "./validations"
+import {UsernameValidator} from "./username-validator"
 
 @Component({
   selector: 'async-validator-example',
@@ -22,7 +22,7 @@ export class AsyncValidatorExampleComponent implements OnInit {
 
   private buildForm() {
     this.form = this.fb.group({
-      username: ['', null, this.validator.validate.bind(this.validator)]
+      username: ['', null, this.validator.validate]
     })
   }
 
